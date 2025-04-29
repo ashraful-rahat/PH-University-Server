@@ -2,6 +2,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import { StudentRoutes } from "./app/modules/student/student.Routes";
+import { userRoutes } from "./app/modules/student/user/user.route";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 // student route
 app.use("/api/v1/students", StudentRoutes);
+app.use("/api/v1/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello from Express + TypeScript!");

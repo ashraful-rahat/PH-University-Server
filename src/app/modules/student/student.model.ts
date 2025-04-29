@@ -30,12 +30,18 @@ const usernameSchema = new Schema<TUsername>({
 
 const studentSchema = new Schema<TStudent>({
   id: { type: String, required: true, unique: true },
+  user: {
+    type: Schema.Types.ObjectId,
+    required: [true, "User Id must needed"],
+    unique: true,
+    ref: "User",
+  },
   name: { type: usernameSchema, required: true },
   gender: { type: String, enum: ["male", "female"], required: true },
   dateOfBirth: { type: String },
   email: { type: String, required: true, unique: true },
   avatar: { type: String },
-  ContactNo: { type: String, required: true },
+  contactNo: { type: String, required: true },
   emergencyContact: { type: String, required: true },
   BloodType: { type: String, enum: ["A", "B", "AB", "O"] },
   presentAddress: { type: String, required: true },
@@ -43,7 +49,6 @@ const studentSchema = new Schema<TStudent>({
   guardian: { type: guardianSchema, required: true },
   localGuardian: { type: localGuardianSchema, required: true },
   profileImg: { type: String },
-  isActive: { type: String, enum: ["active", "offline"], required: true },
 });
 
 const StudentModel = model<TStudent>("Student", studentSchema);

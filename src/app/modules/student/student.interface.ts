@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export type TGuardian = {
   fatherName: string;
   fatherOccupation: string;
@@ -23,12 +25,13 @@ export type TUsername = {
 
 export type TStudent = {
   id: string;
+  user: Types.ObjectId;
   name: TUsername;
   gender: "male" | "female";
   email: string;
   avatar?: string;
   dateOfBirth?: string;
-  ContactNo: string;
+  contactNo: string;
   emergencyContact: string;
   BloodType?: "A" | "B" | "AB" | "O";
   presentAddress: string;
@@ -36,7 +39,6 @@ export type TStudent = {
   guardian: TGuardian;
   localGuardian: TLocalGuardian;
   profileImg?: string;
-  isActive: "active" | "offline";
 };
 // create custom instance method
 
