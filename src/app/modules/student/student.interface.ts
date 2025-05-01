@@ -40,14 +40,3 @@ export type TStudent = {
   localGuardian: TLocalGuardian;
   profileImg?: string;
 };
-// create custom instance method
-
-// export type studentMethods = {
-//   isUserExists(id: string): Promise<TStudent>;
-// };
-
-// export type studentModelForInstance = Model<
-//   TStudent,
-//   Record<string, never>,
-//   studentMethods
-// >;

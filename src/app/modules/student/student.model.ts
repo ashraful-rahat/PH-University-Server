@@ -1,10 +1,10 @@
-import { model, Schema } from "mongoose";
+import { model, Schema } from "mongoose"; // Importing Schema and Types from Mongoose
 import {
   TGuardian,
   TLocalGuardian,
   TStudent,
   TUsername,
-} from "./student.interface";
+} from "./student.interface"; // Import your types
 
 const guardianSchema = new Schema<TGuardian>({
   fatherName: { type: String, required: true },
@@ -28,13 +28,13 @@ const usernameSchema = new Schema<TUsername>({
   lastName: { type: String, required: true },
 });
 
+// Define the student schema
 const studentSchema = new Schema<TStudent>({
   id: { type: String, required: true, unique: true },
   user: {
-    type: Schema.Types.ObjectId,
-    required: [true, "User Id must needed"],
-    unique: true,
-    ref: "User",
+    type: Schema.Types.ObjectId, // Use Schema.Types.ObjectId
+    required: [true, "User Id must be provided"],
+    ref: "User", // Reference the User model
   },
   name: { type: usernameSchema, required: true },
   gender: { type: String, enum: ["male", "female"], required: true },
@@ -51,11 +51,7 @@ const studentSchema = new Schema<TStudent>({
   profileImg: { type: String },
 });
 
+// Create and export the Student Model
 const StudentModel = model<TStudent>("Student", studentSchema);
 
 export default StudentModel;
-
-//use trim
-// message :{value} is not correct format
-// string should be 20 character  then a show a default message
-// use validate function then add all name string 1st word uppercase
