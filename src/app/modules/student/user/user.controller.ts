@@ -1,7 +1,11 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { userServices } from "./user.services";
 
-const createUserController = async (req: Request, res: Response) => {
+const createUserController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { password, student: studentData } = req.body;
 
@@ -13,15 +17,10 @@ const createUserController = async (req: Request, res: Response) => {
     res.status(200).json({
       success: true,
       message: "User created successfully",
-      data: result, // now includes populated user info
+      data: result,
     });
   } catch (error) {
-    console.error("Error in createUserController:", error);
-    res.status(500).json({
-      success: false,
-      message: "Failed to create user",
-      error: (error as Error).message || "An unknown error occurred",
-    });
+    next(error);
   }
 };
 
