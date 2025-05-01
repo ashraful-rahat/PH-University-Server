@@ -1,10 +1,8 @@
+import { NextFunction, Request, Response } from "express";
+import sendResponse from "../../../utlis/sendResponse";
 import { StudentServices } from "./student.service";
 
-import { NextFunction, Request, Response } from "express";
-
-//student post route
-
-//all student get route
+// all student get route
 const getAllStudents = async (
   req: Request,
   res: Response,
@@ -12,9 +10,10 @@ const getAllStudents = async (
 ) => {
   try {
     const result = await StudentServices.getAllStudentFromDB();
-    res.status(200).json({
+    sendResponse(res, {
+      statusCode: 200,
       success: true,
-      message: "Students  find  successfully",
+      message: "Students found successfully", // Corrected message
       data: result,
     });
   } catch (error) {
@@ -22,7 +21,7 @@ const getAllStudents = async (
   }
 };
 
-// get single student route \
+// get single student route
 const getSingleStudent = async (
   req: Request,
   res: Response,
@@ -32,9 +31,10 @@ const getSingleStudent = async (
     const { studentId } = req.params;
     const result = await StudentServices.getSingleStudentFromDB(studentId);
 
-    res.status(200).json({
+    sendResponse(res, {
+      statusCode: 200,
       success: true,
-      message: "Students  find  successfully",
+      message: "Student found successfully", // Corrected message
       data: result,
     });
   } catch (error) {

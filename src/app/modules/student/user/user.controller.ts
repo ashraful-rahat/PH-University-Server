@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import sendResponse from "../../../../utlis/sendResponse";
 import { userServices } from "./user.services";
 
 const createUserController = async (
@@ -13,11 +14,11 @@ const createUserController = async (
       password,
       studentData
     );
-
-    res.status(200).json({
+    sendResponse(res, {
+      statusCode: 200,
       success: true,
-      message: "User created successfully",
-      data: result,
+      message: "Operation was successful",
+      data: {},
     });
   } catch (error) {
     next(error);
