@@ -4,6 +4,7 @@ import express from "express";
 import { StudentRoutes } from "./app/modules/student/student.Routes";
 import { userRoutes } from "./app/modules/student/user/user.route";
 import globalErrorHandler from "./Middleware/globalErrorHandler";
+import notFound from "./Middleware/notFound";
 dotenv.config();
 
 const app = express();
@@ -21,5 +22,6 @@ app.get("/", (req, res) => {
 });
 
 app.use(globalErrorHandler);
+app.use(notFound);
 
 export default app;
